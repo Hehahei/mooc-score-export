@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     resultDf = pd.DataFrame(columns=['学号', '姓名', '学校', '昵称', '测试', '作业', '考试', '新版考试', '课堂讨论', '域外成绩', '成绩'])
 
-    resultDf.to_csv('{}.csv'.format(resultName), index=False, encoding='utf-8')
+    resultDf.to_csv('{}.csv'.format(resultName), index=False, encoding='ANSI')
     print('开始爬取。。。')
     for index in range(1, totlePageCount + 1):
         params = {
@@ -84,6 +84,6 @@ if __name__ == '__main__':
             df = pd.DataFrame([[id, name, school, nickName, testScore, assignmentScore, examScore, newExamScore, replyVote, outsideScore, totalScore]])
             df.iloc[:, 6] = df.iloc[:, 6].astype(str)
 
-            df.to_csv('{}.csv'.format(resultName), index=False, header=None, mode='a', encoding='utf-8')
+            df.to_csv('{}.csv'.format(resultName), index=False, header=None, mode='a', encoding='ANSI')
 
     print('爬取完成！')
