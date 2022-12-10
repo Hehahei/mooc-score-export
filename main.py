@@ -10,8 +10,8 @@ if __name__ == '__main__':
     }
 
     # TODO 替换csrfKey、termId，通过浏览器
-    csrfKey = ''
-    termId = 000000
+    csrfKey = '1111'
+    termId = '1111'
     # TODO 可选替换，resultName，保存的结果文件名
     resultName = 'result'
 
@@ -36,9 +36,9 @@ if __name__ == '__main__':
     print('总学生数{}'.format(queryInfo['totleCount']))
     print('总页数{}'.format(totlePageCount))
 
-    resultDf = pd.DataFrame(columns=['学号', '姓名', '测试', '作业', '考试', '新版考试', '课堂讨论', '域外成绩', '成绩'])
+    resultDf = pd.DataFrame(columns=['学号', '姓名', '学校', '昵称', '测试', '作业', '考试', '新版考试', '课堂讨论', '域外成绩', '成绩'])
 
-    resultDf.to_csv('{}.csv'.format(resultName), index=False, encoding='ANSI')
+    resultDf.to_csv('{}.csv'.format(resultName), index=False, encoding='utf-8')
     print('开始爬取。。。')
     for index in range(1, totlePageCount + 1):
         params = {
@@ -57,13 +57,15 @@ if __name__ == '__main__':
 
         for student in students:
             school = student['schoolName']
-            if school != '武汉理工大学':
-                continue
+            # if school != '学校名称':
+            #     continue
 
             # 学号
             id = student['studentNumber']
             # 姓名
             name = student['realName']
+            # 昵称
+            nickName = student['nickName']
             # 测验
             testScore = student['testScore']
             # 作业
@@ -79,9 +81,9 @@ if __name__ == '__main__':
             # 成绩
             totalScore = student['totalScore']
 
-            df = pd.DataFrame([[id, name, testScore, assignmentScore, examScore, newExamScore, replyVote, outsideScore, totalScore]])
+            df = pd.DataFrame([[id, name, school, nickName, testScore, assignmentScore, examScore, newExamScore, replyVote, outsideScore, totalScore]])
             df.iloc[:, 6] = df.iloc[:, 6].astype(str)
 
-            df.to_csv('{}.csv'.format(resultName), index=False, header=None, mode='a', encoding='ANSI')
+            df.to_csv('{}.csv'.format(resultName), index=False, header=None, mode='a', encoding='utf-8')
 
     print('爬取完成！')
