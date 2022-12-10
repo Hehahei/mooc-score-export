@@ -4,7 +4,7 @@
 
 本项目为[空间分析课程](https://www.icourse163.org/learn/WHUT-1460838161?tid=1468773480)的学生成绩导出脚本，其他课程的适用性未测试，最后一次适用时间为2022年12月10日。
 
-本脚本主要通过请求慕课的学生成绩接口(http://www.icourse163.org/mm-tiku/web/j/mocTermScoreSummaryRpcBean.getStudentScorePagination.rpc)获取数据，该接口需要权限认证及若干参数。
+本脚本主要通过请求慕课的学生成绩接口(http://www.icourse163.org/mm-tiku/web/j/mocTermScoreSummaryRpcBean.getStudentScorePagination.rpc) 获取数据，该接口需要权限认证及若干参数。
 
 ### 1.1 权限认证
 
